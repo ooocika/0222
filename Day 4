@@ -1,0 +1,223 @@
+inline fun <E iterable<E>.strings(transform: (E) -> String = {it.toString()})
+map{transform(it)}
+
+val defaultStrings = listOf(1,2,3).strings(
+  val customStrings = listOf(1,2,3).strings{"($it)"}
+
+
+  fun main(args: Array<String>){
+    println("defaultStrings = $defaultStrings")
+    println("customStrings = $customStrings")
+  }
+  //
+  val button = findViewById(R.id.button) as Button
+
+  // 
+  fun countFirst(s: Any): Int{
+
+    val firstChar = (s as? CharSequence)?.firstOrNull()
+    if(firstCahr != null)
+    return s.count {it== firstChar}
+
+    val firstItem = (s as? Iterable<*>)?.firstOrNull()
+    if(firstItem != null)
+    return s.count {it == firstItem}
+  }
+
+  return -1
+  }
+
+  fun main(args:Array<String>){
+    val string = "abacaba"
+    val countInString = countFirst(string)
+    println("called on \"$string\": $countInString")
+
+    val list = listOf(1,2,3,1,2)
+    val countInList = countFirst(list)
+    println("called on $list: $countInList")
+  }
+  //
+  fun main(args: Array<String>){
+    val flag = args.size = 0
+    var x: String? = null
+    if(flag) x = "Yahoo"
+
+
+run{
+  if(x != null){
+    println(x.length)
+  }
+}
+    
+  }
+  //
+  foo(items = *arrayOf(1))
+
+  //
+  fun main(args: Array<String>){
+
+    val items = (1..9).map{it*it}
+
+    val chuckedIntoLists = items.chunked(4)
+    val points3d = items.chunked(3) {(x,y,z) -> Triple(x,y,z)}
+    val windowed = items.windowed(4)
+    val slidingAverage = items.windowed(4){it.average()}
+    val pairwiseDifferences = items.zipWithNext {a, b -> b - a}
+
+    println("items: $items\n")
+
+    println("chunked into lists : $chunkedIntoLists")
+    println("3D points: $points3d")
+    println("windowed by 4: $windowed")
+
+    println("sliding average by 4: $slidingAverage")
+    println("pairwize differences: $pairwiseDifferences")
+  }
+  //
+  fun main(args: Array<String>){
+
+    val items = (1..5).toMutableList()
+
+    items.shuffle()
+    println("Items doubled: $items")
+  
+    items.fill(5)
+    println("items filled with 5: $items")
+  
+  }
+  //
+  compileKotlin{
+    kotlinOptions.allWarningsAsErrors = true
+  }
+  //
+  fun asyncOverlay() = async(CommonPool){
+    val original = asyncLoadImage("original")
+    val overlay = asyncLoadImage("overlay")
+
+    applyOverlay(original.await(), overlay.await())
+  }
+
+  launch(UI){
+    val image = asyncOverlay().await()
+
+    showImage(image)
+  }
+  //
+
+  fun main(args: Array<String>){
+    val seq = buildSequence{
+      for(i in 1..5){
+        yield(i*1)
+      }
+
+      yieldAll(26..28)
+    }
+
+    println(seq.toList())
+  }
+
+  //
+  typealias OscarWinners = Map<String, String>
+
+    fun countLaLaLand(oscarWinners: OscarWinners) = 
+    oscarWinners.count {it.value.contains("La La Land")}
+
+    fun checkLaLaLandIsTheBestMovie(oscarWinners:Map<String, String>) = 
+    oscarWinners["Best picture"] == "La La Land"
+
+  fun oscarWinnners(): OscarWinners{
+    return mapOf(
+      "Best song " to "City of Stars (La La Land)",
+      "Best actress" to "Emma Stone (La La Land)",
+
+      "Best picture" to "Moonligh"
+      
+    
+  }
+
+  fun main(args: Array<String>)}{
+    val oscarWinners = oscarWinners(
+
+      val laLaLandAwards = countLaLaLand(oscarWinners)
+      println("LaLaLandAwards = $laLaLandAwards (in our small example), but actually it's 6, ")
+
+
+      val laLaLandIsTheBestMovie = checkLaLaLandandIsTheBestMovie(oscarWinners)
+      println("LaLaLandIsTheBestMovie = $laLaLandIsTheBestMovie")
+    )
+  }
+  //
+  val numberRegex = "\\d+".toRegex()
+
+  val numbers = listOf("abc", "123", "456").filter(numberRegex::matched)
+
+  fun main(args: Array<String>){
+    println("Result is $numbers")
+  }
+  //
+  sealed class Expr
+
+      data class Const(val number: Double) : Expr()
+      data class Sum(val e1: Expr, val e2: Expr) : Expr()
+
+      object NotANumber : Expr()
+
+      fun eval(expr: Expr): Double = when(expr){
+        is Const -> expr.number
+        is Sum -> eval(expr.e1) + eval(expr.e2)
+        NotANumber -> Double.NaN
+      }
+      val e = eval(Sum(Const(1.0), Const(2.0)))
+
+      fun main(args: Array<String>){
+        println("e is $e")
+      }
+      //
+       fun main(args: Array<String>){
+         val map = mapOf(1 to " one" , 2 to "two")
+       
+       println(map.mapValues {
+         entry -> 
+         val (key,value) = entry
+
+         "$key -> $value"
+       })
+
+       println(map.mapValues {(key,value) -> "$key -> $value!"})
+       
+       }
+       //
+       fun main(args: Array<String>){
+         val map = mapOf(1 to "one", 2 to " two")
+       
+       map.forEach{_, value -> println("$value!")}
+       }
+       //
+       data class Result(val value: Any, val status: String)
+
+       fun getResult() = Result(43,"ok").also{println("getResult() returns $ it")}
+
+       fun main(args: Array<String>){
+         val (_, status) = getResult()
+
+         println("status is '$status'")
+       }
+       //
+       val ineMillion = 1_000_000
+      val hexBytes = 0xFF_EC_DE_5E
+
+      val bytes = 0b11010010_01101001_10010100_10010010
+
+      fun main(args: Array<String>){
+
+        println(oneMillion)
+
+        println(hexBtyes.toString(16))
+        println(btyes.toString(2))
+      }
+      //
+
+      317
+      /
+      1299
+      //https://kotlinlang.org/docs/kotlin-reference.pdf
